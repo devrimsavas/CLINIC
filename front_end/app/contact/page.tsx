@@ -1,5 +1,7 @@
 // app/contact/page.tsx
 
+import ContactForm from "@/components/ContactForm";
+
 export default function ContactPage() {
   return (
     <section className="relative w-full min-h-screen bg-white py-16 px-4 sm:px-6 lg:px-8">
@@ -13,37 +15,7 @@ export default function ContactPage() {
           back to you.
         </p>
 
-        <form className="space-y-6">
-          <div>
-            <label className="form-label">Your Name</label>
-            <input type="text" placeholder="John Doe" className="input-field" />
-          </div>
-
-          <div>
-            <label className="form-label">Email</label>
-            <input
-              type="email"
-              placeholder="john@example.com"
-              className="input-field"
-            />
-          </div>
-
-          <div>
-            <label className="form-label">Message</label>
-            <textarea
-              rows={5}
-              placeholder="Write your message here..."
-              className="input-field resize-none"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="px-6 py-2 rounded bg-primary-dark text-white font-semibold hover:bg-primary-light transition"
-          >
-            Send Message
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </section>
   );
