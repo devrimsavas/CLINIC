@@ -6,16 +6,18 @@ Users can **create**, **update**, **delete**, or **view** appointments. It uses 
 
 ---
 
-##  Application Structure
+## Application Structure
 
 The project is divided into two main parts:
 
 ### 🔹 Backend
+
 - Built with **ASP.NET 8**
 - Handles all business logic, API routes, and database operations
 - Refer to the backend's own `README.md` for detailed instructions on installation, usage, and available endpoints
 
 ### 🔹 Frontend
+
 - Built with **Next.js v14**
 - Responsible for the user interface
 - Uses **Tailwind CSS** for styling
@@ -23,7 +25,7 @@ The project is divided into two main parts:
 
 ---
 
-##  Install and Run the Application
+## Install and Run the Application
 
 You can start the full application using either an **automatic** or **manual** method.
 
@@ -32,6 +34,7 @@ You can start the full application using either an **automatic** or **manual** m
 In the **root folder**, the application uses the `concurrently` package to start both backend and frontend.
 
 #### Steps:
+
 1. Navigate to the root folder.
 2. Run:
 
@@ -60,7 +63,7 @@ This installs the `concurrently` package.
 
 ---
 
-##  Backend Setup
+## Backend Setup
 
 1. Navigate to `back-end/` folder.
 2. Run:
@@ -81,7 +84,7 @@ http://localhost:<your-port>/swagger/index.html
 
 ---
 
-##  Frontend Setup
+## Frontend Setup
 
 1. Navigate to `front_end/` folder.
 2. Create a `.env.local` file. An example format is available in the frontend section.
@@ -130,7 +133,7 @@ Ensure your frontend `package.json` looks like this:
 
 ---
 
-##  Run Application (Auto Mode)
+## Run Application (Auto Mode)
 
 Once all dependencies are installed:
 
@@ -146,6 +149,15 @@ npm run dev
 
 ---
 
-##  More Info
+## More Info
 
 Detailed package setup and usage instructions are available in the `README.md` files inside the respective `backend/` and `frontend/` folders.
+
+## REFERENCES
+
+In this section, the external resources and materials used to create this application are listed.Additinally, how and what purpose these resources used are discussed in details in the backend and frontend sections README.md files
+
+1. Noroff Learning Resources, "Front-End Technologies Module4, Back-End Technologies"
+2. ChatGPT, OpenAI. Assistance with creating "dummy texts, company name, images and visuals"
+3. MovieTheater Project, Developers own project "to use nextjs components and structure"
+4. code.devpilot.org "to create appointment calendar"

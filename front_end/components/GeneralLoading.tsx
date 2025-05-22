@@ -1,7 +1,7 @@
 //components/GeneralLoading.tsx
 
 "use client";
-import { Clapperboard } from "lucide-react";
+import { Stethoscope } from "lucide-react";
 import LoadingImage from "./LoadingImage";
 
 const GeneralLoading = ({
@@ -17,8 +17,8 @@ const GeneralLoading = ({
       {/* Glow */}
       <div className="absolute w-[800px] h-[700px] bg-white/20 blur-3xl z-0" />
 
-      {/* Clapperboard Icon */}
-      <Clapperboard className="w-12 h-12 text-white mb-4 z-10" />
+      {/* Stethoscope Icon */}
+      <Stethoscope className="w-12 h-12 text-white mb-4 z-10" />
 
       {/* Spinner */}
       <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-primary mb-4 z-10" />
