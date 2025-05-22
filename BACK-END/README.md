@@ -139,7 +139,7 @@ builder.Services.AddCors(options => {
 ---
 
 ##  Front-end
-To be implemented using **React.js**. API is designed to be consumed directly with fetch/axios.
+To be implemented using **Next.js**. API is designed to be consumed directly with fetch/axios.
 
 ---
 
@@ -150,5 +150,5 @@ To be implemented using **React.js**. API is designed to be consumed directly wi
 
 ---
 
-## 💼 Author
+##  Author
 Devrim Savas Yilmaz 2025

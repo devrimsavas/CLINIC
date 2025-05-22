@@ -162,10 +162,6 @@ namespace ClinicBooking.Controllers
             if (time < TimeSpan.FromHours(8) || time > TimeSpan.FromHours(18))
                 return BadRequest(new { Message = "Appointments must be booked between 08:00 and 18:00." });
 
-
-
-
-
             var appointment = new Appointment
             {
                 AppointmentDateTime = dto.AppointmentDateTime,
@@ -288,28 +284,37 @@ namespace ClinicBooking.Controllers
         }
 
 
-        //add later SWAGGER do not forget 
-        //SAMPLE 
+        //Create a new appointment with new or existing patient 
+        /// <summary>
+        /// Creates a new appointment along with a new or existing patient record.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        /// {
+        ///   "patient": {
+        ///     "firstName": "Jane",
+        ///     "lastName": "Doe",
+        ///     "email": "jane@example.com",
+        ///     "birthDate": "1992-08-15",
+        ///     "gender": "Female"
+        ///   },
+        ///   "appointment": {
+        ///     "appointmentDateTime": "2025-05-24T14:00:00",
+        ///     "category": "Checkup",
+        ///     "doctorId": 2,
+        ///     "clinicId": 1,
+        ///     "durationInMinutes": 30
+        ///   }
+        /// }
+        ///
+        /// </remarks>
+        /// <param name="dto">Object containing patient and appointment details.</param>
+        /// <returns>Returns the created appointment information.</returns>
+        /// <response code="201">Appointment successfully created.</response>
+        /// <response code="400">Invalid input or scheduling conflict.</response>
 
-        /*
-        {
-  "patient": {
-    "firstName": "Jane",
-    "lastName": "Doe",
-    "email": "jane@example.com",
-    "birthDate": "1992-08-15",
-    "gender": "Female"
-  },
-  "appointment": {
-    "appointmentDateTime": "2025-05-24T14:00:00",
-    "category": "Checkup",
-    "doctorId": 2,
-    "clinicId": 1,
-    "durationInMinutes": 30
-  }
-}
 
-        */
         [HttpPost("with-patient")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
