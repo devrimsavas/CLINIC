@@ -160,4 +160,260 @@ In this section, the external resources and materials used to create this applic
 1. Noroff Learning Resources, "Front-End Technologies Module4, Back-End Technologies"
 2. ChatGPT, OpenAI. Assistance with creating "dummy texts, company name, images and visuals"
 3. MovieTheater Project, Developers own project "to use nextjs components and structure"
-4. code.devpilot.org "to create appointment calendar"
+4. code.devpilot.org "to create appointment calendar"  "https://code.daypilot.org"
+
+
+
+# Clinic Appointment Booking System BACK-END 
+
+This is the **Back-end API** for the Clinic Appointment Booking system developed using **ASP.NET Core 8** and **Entity Framework Core**, with a **MySQL** database.
+
+It allows patients to book appointments with doctors without authentication, following REST principles.
+
+---
+
+## Technologies Used
+
+- ASP.NET Core 8
+- Entity Framework Core
+- MySQL
+- Swagger (API Documentation)
+- LINQ
+- CORS
+
+---
+
+##  Setup & Configuration
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/clinic-booking-backend.git
+cd clinic-booking-backend
+```
+
+### 2. Add `appsettings.json`
+Create a new file named `appsettings.json` in the root folder:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=medicalclinics;user=root;password=yourpassword"
+  }
+}
+```
+
+>  This file is excluded from version control using `.gitignore`. Use `appsettings.json.sample.txt` for reference.
+
+### 3. Run the Application
+```bash
+dotnet build
+dotnet ef database update
+dotnet run
+```
+
+The Swagger UI will be available at: https://localhost:{PORT}/swagger
+
+---
+
+##  Endpoints Overview
+
+###  Appointments
+| Method | Endpoint               | Description                     |
+|--------|------------------------|---------------------------------|
+| GET    | `/api/appointments`    | Get all appointments            |
+| GET    | `/api/appointments/{id}` | Get an appointment by ID      |
+| POST   | `/api/appointments`    | Create a new appointment        |
+| PUT    | `/api/appointments/{id}` | Update an appointment         |
+| DELETE | `/api/appointments/{id}` | Delete an appointment         |
+
+### Patients
+| Method | Endpoint           | Description                  |
+|--------|--------------------|------------------------------|
+| GET    | `/api/patients`    | Get all patients             |
+| GET    | `/api/patients/{id}` | Get patient by ID         |
+| POST   | `/api/patients`    | Create a patient             |
+| PUT    | `/api/patients/{id}` | Update a patient           |
+| DELETE | `/api/patients/{id}` | Delete a patient           |
+
+###  Doctors
+| Method | Endpoint         | Description              |
+|--------|------------------|--------------------------|
+| GET    | `/api/doctors`   | Get all doctors          |
+| GET    | `/api/doctors/{id}` | Get doctor by ID     |
+| POST   | `/api/doctors`   | Create a doctor          |
+| PUT    | `/api/doctors/{id}` | Update a doctor       |
+| DELETE | `/api/doctors/{id}` | Delete a doctor       |
+
+###  Clinics
+| Method | Endpoint         | Description              |
+|--------|------------------|--------------------------|
+| GET    | `/api/clinics`   | Get all clinics          |
+| GET    | `/api/clinics/{id}` | Get clinic by ID     |
+| POST   | `/api/clinics`   | Create a clinic          |
+| PUT    | `/api/clinics/{id}` | Update a clinic       |
+| DELETE | `/api/clinics/{id}` | Delete a clinic       |
+
+###  Specialities
+| Method | Endpoint             | Description                  |
+|--------|----------------------|------------------------------|
+| GET    | `/api/specialities`  | Get all specialities         |
+| GET    | `/api/specialities/{id}` | Get by ID               |
+| POST   | `/api/specialities`  | Create a new speciality      |
+| PUT    | `/api/specialities/{id}` | Update a speciality     |
+| DELETE | `/api/specialities/{id}` | Delete a speciality     |
+
+###  Doctor Search
+| Method | Endpoint               | Description                                  |
+|--------|------------------------|----------------------------------------------|
+| POST   | `/api/search/doctors`  | Search by first name or last name (no auth) |
+
+Sample POST Body:
+```json
+{
+  "firstName": "John",
+  "lastName": "Doe"
+}
+```
+
+---
+
+##  Swagger
+Visit the Swagger UI:
+```
+https://localhost:{PORT}/swagger
+```
+This shows request/response schemas, example requests, and testing tools.
+
+---
+
+##  CORS Configuration
+All origins, headers, and methods are allowed:
+```csharp
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowAll", builder => {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+```
+---
+
+##  Front-end
+To be implemented using **Next.js**. API is designed to be consumed directly with fetch/axios.
+
+---
+
+##  Notes
+- Only non-sensitive PII (Personal Identifiable Information) is stored.
+- DTOs are used to shape responses and avoid entity leakage.
+- XML comments included for Swagger documentation.
+
+------------------------------------------------------------------------------------------
+
+
+# Clinic Appointment Booking System - Frontend
+
+This is the **frontend** part of the **Clinic Appointment Booking System**, built with **Next.js v14.0.1**.
+
+> ⚠️ Make sure the backend is active and running **before** starting the frontend.
+
+##  Overview
+
+This application enables users to book medical appointments, search for doctors, and provides an admin interface for managing data. Below is a breakdown of available pages and features.
+
+### 1. Book Appointment Page
+
+ `http://localhost:3000/`
+
+- Allows users to create a new appointment.
+- Appointments can only be made within working hours and not before the current date.
+- Booking rules are displayed on the page.
+
+### 2. Search Doctor Page
+
+ `http://localhost:3000/search`
+
+- Users can search for any doctor or view all doctors.
+- Includes functionality to clear search results.
+
+### 3. Admin Page
+
+ `http://localhost:3000/admin`
+
+- A special admin panel with its own navbar.
+- Admin can manage:
+  - Clinics
+  - Doctors
+  - Patients
+  - Appointments
+  - Specialities
+- Full CRUD functionality available.
+- ❗ No authentication/authorization is currently implemented.
+- Future plans include role-based access control to comply with personal data protection laws.
+- Admin **cannot** delete a patient who has an appointment.
+
+### 4. Appointment Calendar
+
+ `http://localhost:3000/calendar`
+
+- View appointments in **monthly** and **daily** format.
+- Based on [DayPilot Calendar](https://code.daypilot.org/62886/next-js-calendar-day-week-month-open-source).
+- Ensure the following dependency is installed and appears in your `package.json`:
+
+```json
+"dependencies": {
+  "@daypilot/daypilot-lite-react": "^3.33.1"
+}
+```
+
+### 5. Footbar
+
+- Includes:
+  - Dummy contact form
+  - About Us
+  - Privacy Policy
+- For realistic use, patients should accept the privacy policy before booking.
+
+### 6. Naming
+
+- The application name was randomly generated via ChatGPT.
+- It has no relation to any real entity.
+
+### 7. Images and Texts
+
+- Generated via ChatGPT.
+- Includes placeholders for loading, 404 pages, About Us, and Privacy sections.
+
+### 8. Libraries Used
+
+- `@daypilot/daypilot-lite-react` for calendar.
+- `lucide-react` for icons.
+- `animate.css` for animations.
+
+### 9. Styling
+
+- **Tailwind CSS** is used for styling.
+- The main styling configuration is handled in `tailwind.config.ts`.
+
+---
+
+##  Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+Make sure the backend is running and properly connected.
+
+---
+
+
+
+
